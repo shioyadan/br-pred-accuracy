@@ -1,0 +1,62 @@
+{
+    "version": "0.1.0",
+    "windows": {
+        "command": "cmd.exe",
+        "args": [
+            "/c",
+            "C:\\MinGW\\msys\\1.0\\bin\\make.exe"
+            //"c:\\tools\\cygwin\\bin\\bash.exe --login -c \"make" // make の前に \" を入れておく必要がある
+        ],
+        "options": {
+            "env": {
+                "CHERE_INVOKING": "1",
+                "LANG": "C"
+            }
+        }
+    },
+    "echoCommand": true,
+    "isShellCommand": true,
+    "showOutput": "always",
+    "suppressTaskName": true,
+    "options": {
+        "cwd": "${workspaceRoot}"
+    },
+    "tasks": [
+        {
+            "taskName": "make",
+            "args": [
+                "all"
+            ],
+            "isBuildCommand": true,
+            // Use the standard less compilation problem matcher.
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "taskName": "run",
+            "isTestCommand": true, 
+            "args": [
+                "run"
+            ]
+        },
+        {
+            "taskName": "clean",
+            "args": [
+                "clean"
+            ]
+        }
+    ]
+}
